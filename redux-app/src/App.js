@@ -6,14 +6,18 @@ import * as actionCreators from "./state/actionCreators";
 import CharactersList from "./Components/CharactersList";
 
 function App({ data, spinnerOn, fetchData }) {
-  console.log(data);
-
   useEffect(() => {
     fetchData();
   }, []);
 
   if (spinnerOn) {
-    return <div className="spinner">Please Wait</div>;
+    return (
+      <div className="loader">
+        <div className="inner one"></div>
+        <div className="inner two"></div>
+        <div className="inner three"></div>
+      </div>
+    );
   }
 
   return (

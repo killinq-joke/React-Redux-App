@@ -12,17 +12,17 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
-background: green;
-color: white;
-border: 0;
-border-radius: 20px;
-padding: 10px 60px;
-margin: 10px;
-cursor: pointer;
-&:hover {
+  background: green;
+  color: white;
+  border: 0;
+  border-radius: 20px;
+  padding: 10px 60px;
+  margin: 10px;
+  cursor: pointer;
+  &:hover {
     background: red;
-}
-`
+  }
+`;
 
 function CharactersList({ data, handleButton }) {
   return (

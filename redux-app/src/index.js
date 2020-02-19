@@ -5,7 +5,7 @@ import App from "./App";
 import thunk from "redux-thunk";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { dataReducer,  spinnerReducer } from "./state/reducers";
+import { dataReducer, spinnerReducer } from "./state/reducers";
 import * as serviceWorker from "./serviceWorker";
 
 const combinedReducer = combineReducers({

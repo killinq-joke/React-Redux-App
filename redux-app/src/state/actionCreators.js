@@ -15,7 +15,7 @@ export const fetchCharacters = () => dispatch => {
     .catch(err => {
         debugger
     })
-    .finally(
+    .finally(() => {
         dispatch({type: types.SPINNER_STOP})
-    )
+    })
 }

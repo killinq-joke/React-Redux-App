@@ -3,29 +3,31 @@ import "./App.css";
 import { connect } from "react-redux";
 import * as actionCreators from "./state/actionCreators";
 
-function App({ characters, spinnerOn, fetchCharacters }) {
-  console.log(characters)
-  useEffect(() => {
-    fetchCharacters()
-  }, [])
+import CharactersList from "./Components/CharactersList";
 
-  return(
+function App({ characters, spinnerOn, fetchCharacters }) {
+  console.log(characters);
+
+  useEffect(() => {
+    fetchCharacters();
+  }, []);
+
+  if (spinnerOn) {
+    return <div className="spinner">Please Wait</div>;
+  }
+
+  return (
     <div className="App">
-      
+      <CharactersList />
     </div>
-  ) 
+  );
 }
 
 function mapStateToProps(state) {
   return {
-    // what props do we want the component to get?
     characters: state.characters,
     spinnerOn: state.spinnerOn
   };
 }
 
-// STEP-8 USE connect FROM react-redux TO WRAP OUR COMPONENT
-export default connect(
-  mapStateToProps,
-  actionCreators // STEP-9 BRING IN THE ACTION CREATORS
-)(App);
+export default connect(mapStateToProps, actionCreators)(App);

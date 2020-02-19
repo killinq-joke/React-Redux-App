@@ -1,16 +1,20 @@
 import * as types from "./actionTypes";
 
-// {
-//     characters: [],
-//     spinnerOn: false,
-// }
-
-const initialStateCharacters = [];
-export function charactersReducer(state = initialStateCharacters, action) {
+const initialStateData = {
+    next: '',
+    prev: '',
+    characters: []
+}
+export function dataReducer(state = initialStateData, action) {
   switch (action.type) {
-    case types.SET_FETCHED_CHARACTERS:
-      return action.payload;
-    case types.FETCH_CHARACTERS_START:
+    case types.SET_FETCHED_DATA:
+      return {
+          ...state,
+          next: action.payload.info.next,
+          prev: action.payload.info.prev,
+          characters: action.payload.results
+      } //{...state, next: action.payload.info.next, prev: action.payload.info.prev , characters: action.payload.results}
+    case types.FETCH_DATA_START:
       return state;
     default:
       return state;

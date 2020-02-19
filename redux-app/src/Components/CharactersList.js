@@ -24,14 +24,14 @@ cursor: pointer;
 }
 `
 
-function CharactersList({ characters }) {
+function CharactersList({ data, handleButton }) {
   return (
     <div>
-      <Button>PREV</Button>
-      <Button>NEXT</Button>
+      <Button onClick={evt => handleButton(data.prev)}>PREV</Button>
+      <Button onClick={evt => handleButton(data.next)}>NEXT</Button>
 
       <Container>
-        {characters.map(character => {
+        {data.characters.map(character => {
           return (
             <Character
               key={character.id}
@@ -42,15 +42,15 @@ function CharactersList({ characters }) {
         })}
       </Container>
 
-      <Button>PREV</Button>
-      <Button>NEXT</Button>
+      <Button onClick={evt => handleButton(data.prev)}>PREV</Button>
+      <Button onClick={evt => handleButton(data.next)}>NEXT</Button>
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    characters: state.characters
+    data: state.data
   };
 }
 

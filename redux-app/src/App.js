@@ -5,11 +5,11 @@ import * as actionCreators from "./state/actionCreators";
 
 import CharactersList from "./Components/CharactersList";
 
-function App({ characters, spinnerOn, fetchCharacters }) {
-  console.log(characters);
+function App({ data, spinnerOn, fetchData }) {
+  console.log(data);
 
   useEffect(() => {
-    fetchCharacters();
+    fetchData();
   }, []);
 
   if (spinnerOn) {
@@ -25,7 +25,7 @@ function App({ characters, spinnerOn, fetchCharacters }) {
 
 function mapStateToProps(state) {
   return {
-    characters: state.characters,
+    data: state.data,
     spinnerOn: state.spinnerOn
   };
 }

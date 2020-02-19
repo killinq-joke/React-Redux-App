@@ -5,7 +5,7 @@ import * as actionCreators from "./state/actionCreators";
 
 import CharactersList from "./Components/CharactersList";
 
-function App({ data, spinnerOn, fetchData }) {
+function App({ spinnerOn, fetchData }) {
   useEffect(() => {
     fetchData();
   }, []);

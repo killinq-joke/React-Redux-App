@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
-  background: green;
+  background: rgb(21, 216, 21);
   color: white;
   border: 0;
   border-radius: 20px;
@@ -20,18 +20,21 @@ const Button = styled.button`
   margin: 10px;
   cursor: pointer;
   &:hover {
-    background: red;
+    background: rgb(16, 173, 16);
+  }
+  &:focus {
+      outline: none;
   }
 `;
 
-function CharactersList({ data, handleButton }) {
+function CharactersList({ characters, handleButton }) {
   return (
     <div>
-      <Button onClick={evt => handleButton(data.prev)}>PREV</Button>
-      <Button onClick={evt => handleButton(data.next)}>NEXT</Button>
+      <Button onClick={evt => handleButton(characters.prev)}>PREV</Button>
+      <Button onClick={evt => handleButton(characters.next)}>NEXT</Button>
 
       <Container>
-        {data.characters.map(character => {
+        {characters.characters.map(character => {
           return (
             <Character
               key={character.id}
@@ -42,15 +45,15 @@ function CharactersList({ data, handleButton }) {
         })}
       </Container>
 
-      <Button onClick={evt => handleButton(data.prev)}>PREV</Button>
-      <Button onClick={evt => handleButton(data.next)}>NEXT</Button>
+      <Button onClick={evt => handleButton(characters.prev)}>PREV</Button>
+      <Button onClick={evt => handleButton(characters.next)}>NEXT</Button>
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    data: state.data
+    characters: state.characters
   };
 }
 

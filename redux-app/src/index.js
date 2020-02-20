@@ -5,11 +5,13 @@ import App from "./App";
 import thunk from "redux-thunk";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { dataReducer, spinnerReducer } from "./state/reducers";
+import { charactersReducer, locationReducer, spinnerReducer } from "./state/reducers";
+import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 const combinedReducer = combineReducers({
-  data: dataReducer,
+  characters: charactersReducer,
+  locations: locationReducer,
   spinnerOn: spinnerReducer
 });
 
@@ -23,9 +25,11 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById("root")
 );
 

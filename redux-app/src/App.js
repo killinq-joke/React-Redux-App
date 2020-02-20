@@ -2,12 +2,21 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 import * as actionCreators from "./state/actionCreators";
-
+import { Switch, Route, NavLink } from "react-router-dom";
+import styled from "styled-components";
 import CharactersList from "./Components/CharactersList";
+import LocationsList from "./Components/LocationsList";
 
-function App({ spinnerOn, fetchData }) {
+const TopNav = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+function App({ locations, spinnerOn, fetchCharacters, fetchLocations }) {
   useEffect(() => {
-    fetchData();
+    fetchCharacters();
+    fetchLocations();
   }, []);
 
   if (spinnerOn) {
@@ -22,14 +31,36 @@ function App({ spinnerOn, fetchData }) {
 
   return (
     <div className="App">
-      <CharactersList />
+      <TopNav>
+        <NavLink exact to="/" activeClassName="active" replace>
+          HOME
+        </NavLink>
+        <NavLink exact to="/characters/list" activeClassName="active" replace>
+          CHARACTERS
+        </NavLink>
+        <NavLink exact to="/locations/list" activeClassName="active" replace>
+          LOCATIONS
+        </NavLink>
+      </TopNav>
+      <Switch>
+        <Route exact path="/">
+          <div>HOME</div>
+        </Route>
+        <Route exact path="/characters/list">
+          <CharactersList />
+        </Route>
+        <Route exact path="/locations/list">
+          <LocationsList />
+        </Route>
+      </Switch>
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    data: state.data,
+    characters: state.characters,
+    locations: state.locations,
     spinnerOn: state.spinnerOn
   };
 }

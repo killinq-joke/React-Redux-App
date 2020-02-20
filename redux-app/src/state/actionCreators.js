@@ -1,15 +1,16 @@
 import * as types from "./actionTypes";
 import axios from "axios";
 
-const characterAPI = "https://rickandmortyapi.com/api/character";
+const charactersAPI = "https://rickandmortyapi.com/api/character";
+const locationsAPI = "https://rickandmortyapi.com/api/location";
 
-export const fetchData = () => dispatch => {
-  dispatch({ type: types.FETCH_DATA_START });
+export const fetchCharacters = () => dispatch => {
+  dispatch({ type: types.FETCH_CHARACTERS_START });
   dispatch({ type: types.SPINNER_START });
   axios
-    .get(characterAPI)
+    .get(charactersAPI)
     .then(res => {
-      dispatch({ type: types.SET_FETCHED_DATA, payload: res.data });
+      dispatch({ type: types.SET_FETCHED_CHARACTERS, payload: res.data });
     })
     .catch(err => {
       debugger;
@@ -20,12 +21,12 @@ export const fetchData = () => dispatch => {
 };
 
 export const handleButton = page => dispatch => {
-  dispatch({ type: types.FETCH_DATA_START });
+  dispatch({ type: types.FETCH_CHARACTERS_START });
   dispatch({ type: types.SPINNER_START });
   axios
     .get(page)
     .then(res => {
-      dispatch({ type: types.SET_FETCHED_DATA, payload: res.data });
+      dispatch({ type: types.SET_FETCHED_CHARACTERS, payload: res.data });
     })
     .catch(err => {
       debugger;
@@ -34,3 +35,20 @@ export const handleButton = page => dispatch => {
       dispatch({ type: types.SPINNER_STOP });
     });
 };
+
+export const fetchLocations = () => dispatch => {
+    dispatch({ type: types.FETCH_LOCATIONS_START});
+    dispatch({ type: types.SPINNER_START });
+    axios
+    .get(locationsAPI)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: types.SET_FETCHED_LOCATIONS, payload: res.data });
+    })
+    .catch(err => {
+      debugger;
+    })
+    .finally(() => {
+      dispatch({ type: types.SPINNER_STOP });
+    });
+}
